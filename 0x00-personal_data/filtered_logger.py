@@ -8,7 +8,7 @@ import re
 
 
 def filter_datum(fields: List[str], redaction: str, message: str,
-                 separator: str) -> List[str]:
+                 separator: str) -> str:
     """ obsfucating a field """
     for f in fields:
         message = re.sub(rf"{f}=(.*?)\{separator}",

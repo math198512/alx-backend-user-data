@@ -18,7 +18,7 @@ PERSONAL_DATA_DB_NAME = os.getenv('PERSONAL_DATA_DB_NAME', '')
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
-        """
+    """
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
@@ -55,7 +55,7 @@ def get_logger() -> logging.Logger:
     return logger
 
 
-def get_db():
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """Connect to secure database"""
     # Connect to server
     cnx = mysql.connector.connect(

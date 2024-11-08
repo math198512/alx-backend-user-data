@@ -2,13 +2,18 @@
 """
 Module for filtered_logger
 """
-
 from typing import List
 import re
 import logging
+import os
+import mysql.connector
 
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+PERSONAL_DATA_DB_HOST = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
+PERSONAL_DATA_DB_USERNAME = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+PERSONAL_DATA_DB_PASSWORD = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+PERSONAL_DATA_DB_NAME = os.getenv('PERSONAL_DATA_DB_NAME', '')
 
 
 class RedactingFormatter(logging.Formatter):
@@ -48,3 +53,14 @@ def get_logger() -> logging.Logger:
     logger.propagate = False
     logger.addHandler(stream_handler)
     return logger
+
+
+def get_db():
+    """Connect to secure database"""
+    # Connect to server
+    cnx = mysql.connector.connect(
+        host=PERSONAL_DATA_DB_HOST,
+        user=PERSONAL_DATA_DB_USERNAME,
+        password=PERSONAL_DATA_DB_PASSWORD,
+        db_name=PERSONAL_DATA_DB_NAME)
+    return cnx

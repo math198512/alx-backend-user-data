@@ -52,15 +52,17 @@ def get_logger() -> logging.Logger:
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
-    """Connect to secure database"""
-    PERSONAL_DATA_DB_HOST = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
-    PERSONAL_DATA_DB_USERNAME = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
-    PERSONAL_DATA_DB_PASSWORD = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
-    PERSONAL_DATA_DB_NAME = os.getenv('PERSONAL_DATA_DB_NAME', '')
-    cnx = mysql.connector.connect(
-        host=PERSONAL_DATA_DB_HOST,
+    """Creates a connector to a database.
+    """
+    db_host = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = os.getenv("PERSONAL_DATA_DB_NAME", "")
+    db_user = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
+    db_pwd = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
+    connection = mysql.connector.connect(
+        host=db_host,
         port=3306,
-        user=PERSONAL_DATA_DB_USERNAME,
-        password=PERSONAL_DATA_DB_PASSWORD,
-        database=PERSONAL_DATA_DB_NAME)
-    return cnx
+        user=db_user,
+        password=db_pwd,
+        database=db_name,
+    )
+    return connection

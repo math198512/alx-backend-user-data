@@ -10,10 +10,6 @@ import mysql.connector
 
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
-PERSONAL_DATA_DB_HOST = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
-PERSONAL_DATA_DB_USERNAME = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
-PERSONAL_DATA_DB_PASSWORD = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
-PERSONAL_DATA_DB_NAME = os.getenv('PERSONAL_DATA_DB_NAME', '')
 
 
 class RedactingFormatter(logging.Formatter):
@@ -57,7 +53,10 @@ def get_logger() -> logging.Logger:
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """Connect to secure database"""
-    # Connect to server
+    PERSONAL_DATA_DB_HOST = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
+    PERSONAL_DATA_DB_USERNAME = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    PERSONAL_DATA_DB_PASSWORD = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    PERSONAL_DATA_DB_NAME = os.getenv('PERSONAL_DATA_DB_NAME', '')
     cnx = mysql.connector.connect(
         host=PERSONAL_DATA_DB_HOST,
         user=PERSONAL_DATA_DB_USERNAME,

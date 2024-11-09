@@ -64,3 +64,17 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         password=PERSONAL_DATA_DB_PASSWORD,
         database=PERSONAL_DATA_DB_NAME)
     return cnx
+
+
+def main():
+    """Read and filter data, the whole picture"""
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    for row in cursor:
+        print(row)
+    cursor.close()
+    db.close()
+
+if __name__ == "__main__":
+    main()

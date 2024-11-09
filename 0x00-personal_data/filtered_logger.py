@@ -72,7 +72,7 @@ def main():
     cursor = db.cursor()
     cursor.execute("SELECT * FROM users;")
     for row in cursor:
-        print(row)
+        print(filter_datum(PII_FIELDS, 'xxx', row, ';'))
     cursor.close()
     db.close()
 

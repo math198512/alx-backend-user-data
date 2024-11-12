@@ -6,6 +6,7 @@ from api.v1.views.users import User
 from typing import List, TypeVar
 
 
+user_type = TypeVar('User')
 class Auth():
     """Authentication class"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
@@ -16,6 +17,6 @@ class Auth():
         """returns None - request will be the Flask request object"""
         return None
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> user_type:
         """eturns None - request will be the Flask request object"""
         return None

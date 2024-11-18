@@ -14,7 +14,7 @@ class Auth():
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """returns False - path and excluded_paths will be used later"""
         if path is None:
-            return None
+            return True
         if excluded_paths is None or excluded_paths == []:
             return True
         if path[-1] != "/":

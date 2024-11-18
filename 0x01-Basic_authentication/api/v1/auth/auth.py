@@ -28,10 +28,8 @@ class Auth():
         """returns None - request will be the Flask request object"""
         if request is None:
             return None
-        elif "Authorization" in request:
-            return None
         else:
-            return request.headers.get('Authorization')
+            return request.headers.get('Authorization', None)
 
     def current_user(self, request=None) -> user_type:
         """eturns None - request will be the Flask request object"""

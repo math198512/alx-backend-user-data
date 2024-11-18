@@ -4,6 +4,7 @@
 import base64
 import re
 from .auth import Auth
+import binascii
 
 
 class BasicAuth(Auth):
@@ -29,9 +30,9 @@ class BasicAuth(Auth):
             return None
         try:
             res = base64.b64decode(
-                base64_authorization_header,
+                b64ah,
                 validate=True,
                 )
             return res.decode("utf-8")
-        except():
+        except(binascii.Error):
             return None

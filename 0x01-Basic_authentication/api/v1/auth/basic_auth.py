@@ -2,6 +2,7 @@
 """Basic authentication module for the API.
 """
 import base64
+from typing import Tuple, TypeVar
 import re
 from .auth import Auth
 import binascii
@@ -36,3 +37,17 @@ class BasicAuth(Auth):
             return res.decode("utf-8")
         except(binascii.Error):
             return None
+
+    def extract_user_credentials(
+            self,
+            decoded_base64_authorization_header: str) -> Tuple[str, str]:
+        """
+        returns the user email and password from the Base64 decoded value.
+        """
+        db64ah = decoded_base64_authorization_header
+        if db64ah is None or type(db64ah) != str:
+            return (None, None)
+        if ":" not in db64ah:
+            return (None, None)
+        else:
+            return (db64ah.split(":")[0], db64ah.split(":")[1])

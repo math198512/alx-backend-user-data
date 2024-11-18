@@ -33,3 +33,8 @@ class Auth():
     def current_user(self, request=None) -> user_type:
         """eturns None - request will be the Flask request object"""
         return None
+
+
+class BasicAuth(Auth):
+    """Basic Authentication class"""
+    pass

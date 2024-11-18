@@ -19,8 +19,10 @@ class Auth():
             return True
         if path[-1] != "/":
             path = path + "/"
-        bool_var = False if path in excluded_paths else bool_var = True
-        return bool_var
+        if path in excluded_paths:
+            return False
+        else:
+            return True
 
     def authorization_header(self, request=None) -> str:
         """returns None - request will be the Flask request object"""

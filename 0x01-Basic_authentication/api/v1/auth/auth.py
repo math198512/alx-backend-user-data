@@ -31,7 +31,7 @@ class Auth():
         elif "Authorization" in request:
             return None
         else:
-            return request["Authorization"]
+            return request.headers.get('Authorization')
 
     def current_user(self, request=None) -> user_type:
         """eturns None - request will be the Flask request object"""

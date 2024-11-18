@@ -50,7 +50,7 @@ def authenticate_user():
             '/api/v1/unauthorized/',
             '/api/v1/forbidden/',
             ]
-        if not auth.require_auth(request.path, paths):
+        if auth.require_auth(request.path, paths):
             if auth.authorization_header(request) is None:
                 abort(401)
             if auth.current_user(request) is None:

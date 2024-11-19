@@ -55,5 +55,8 @@ class BasicAuth(Auth):
         else:
             return (db64ah.split(":")[0], db64ah.split(":")[1])
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> user_type:
-        """"""
+    def user_object_from_credentials(
+            self,
+            user_email: str,
+            user_pwd: str) -> user_type:
+        """returns the User instance based on his email and password."""

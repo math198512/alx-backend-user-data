@@ -6,6 +6,7 @@ from typing import Tuple, TypeVar
 import re
 from .auth import Auth
 import binascii
+from models.user import User
 
 
 user_type = TypeVar('User')
@@ -60,3 +61,8 @@ class BasicAuth(Auth):
             user_email: str,
             user_pwd: str) -> user_type:
         """returns the User instance based on his email and password."""
+        if user_email is None or type(user_email) != str:
+            return None
+        if user_pwd is None or type(user_pwd) != str:
+            return None
+        

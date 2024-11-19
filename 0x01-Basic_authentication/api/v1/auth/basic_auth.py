@@ -80,6 +80,6 @@ class BasicAuth(Auth):
         auth_header = self.authorization_header(request)
         extracted_auth = self.extract_base64_authorization_header(auth_header)
         decoded_auth = self.decode_base64_authorization_header(extracted_auth)
-        credentials = self.extract_user_credentials(decoded_auth)
-        user = self.user_object_from_credentials(credentials)
+        email, pwd = self.extract_user_credentials(decoded_auth)
+        user = self.user_object_from_credentials(email, pwd)
         return user

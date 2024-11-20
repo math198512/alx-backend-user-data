@@ -15,4 +15,4 @@ user_type = TypeVar('User')
 class SessionAuth(Auth):
     """Basic authentication class.
     """
-    pass
+    user_id_by_session_id = {}

@@ -33,3 +33,9 @@ class Auth():
     def current_user(self, request=None) -> user_type:
         """eturns None - request will be the Flask request object"""
         return None
+
+    def session_cookie(self, request=None):
+        """that returns a cookie value from a request"""
+        if request is None:
+            return None
+        return request.cookies.get('_my_session_id', None)

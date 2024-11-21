@@ -4,6 +4,7 @@
 from flask import request
 from api.v1.views.users import User
 from typing import List, TypeVar
+import os
 
 
 user_type = TypeVar('User')
@@ -38,4 +39,6 @@ class Auth():
         """that returns a cookie value from a request"""
         if request is None:
             return None
-        return request.cookies.get('_my_session_id', None)
+        else:
+            cookie = os.getenv('SESSION_NAME')
+            return request.cookies.get(cookie)

@@ -1,30 +1,19 @@
 #!/usr/bin/env python3
 """
-Route 
+The `user` model's module.
 """
-from flask import Flask, jsonify, request
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-app = Flask(__name__)
+Base = declarative_base()
 
-@app.route('/')
-def home():
-    return jsonify(message="Welcome to the User Authentication Service")
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    # Add authentication logic here
-    return jsonify(message="Login successful")
-
-@app.route('/register', methods=['POST'])
-def register():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    # Add registration logic here
-    return jsonify(message="Registration successful")
-
-if __name__ == '__main__':
-    app.run(debug=True)
+class User(Base):
+    """Represents a record from the `user` table.
+    """
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    email = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    session_id = Column(String, nullable=True)
+    reset_token = Column(String, nullable=True)

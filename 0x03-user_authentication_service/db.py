@@ -9,9 +9,6 @@ from typing import TypeVar
 from user import User, Base
 
 
-user_type = TypeVar(User)
-
-
 class DB:
     """DB class
     """
@@ -33,7 +30,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str) -> user_type:
+    def add_user(self, email: str, hashed_password: str) -> User:
         """
         takes two required string arguments:
         email and hashed_password, and returns a User object.

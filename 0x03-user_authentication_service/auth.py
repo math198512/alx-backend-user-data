@@ -5,6 +5,7 @@ User Authentication Service
 from user import User
 import bcrypt
 from db import DB
+import uuid
 
 
 def _hash_password(password: str) -> bytes:
@@ -16,6 +17,13 @@ def _hash_password(password: str) -> bytes:
         bytes: The hashed password.
     """
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
+
+def _generate_uuid() -> str:
+    """
+    returns a string representation of a new UUID
+    """
+    return str(uuid())
 
 
 class Auth:

@@ -49,5 +49,12 @@ class DB:
     def find_user_by(self, **kwargs) -> User:
         """Finds a user based on a set of filters.
         """
-        user = self._session.query(User).filter_by(kwargs=kwargs)
+        user = self._session.query(User)
+        for key, value in kwargs.items():
+            if hasattr(User, key):
+                user = user.filter(getattr(User, key) == value).first()
+            else:
+                raise InvalidRequestError()
+        if user is None:
+            raise NoResultFound()
         return user

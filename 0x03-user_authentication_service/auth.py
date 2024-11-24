@@ -14,4 +14,4 @@ def _hash_password(password: str) -> bytes:
     Returns:
         bytes: The hashed password.
     """
-    return bcrypt.hashpw(password)
+    return bcrypt.hashpw(password, 14)

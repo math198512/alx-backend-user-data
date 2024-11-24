@@ -57,12 +57,12 @@ class DB:
                 values.append(value)
             else:
                 raise InvalidRequestError()
-        result = self._session.query(User).filter(
+        user = self._session.query(User).filter(
             tuple_(*keys).in_([tuple(values)])
         ).first()
-        if result is None:
+        if user is None:
             raise NoResultFound()
-        return result
+        return user
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """

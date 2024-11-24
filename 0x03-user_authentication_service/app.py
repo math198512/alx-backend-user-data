@@ -16,8 +16,8 @@ def hello_world():
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def users():
-    email = request.form.get("email", None)
-    password = request.form.get("password", None)
+    email = request.form.get("email")
+    password = request.form.get("password")
     try:
         AUTH.register_user(email, password)
     except Exception:

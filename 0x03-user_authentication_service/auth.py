@@ -80,5 +80,5 @@ class Auth:
             return None
         sess_id = _generate_uuid()
         user.session_id = sess_id
-        self._db._session.commit()
+        self._db.update_user(user.id, session_id=sess_id)
         return sess_id

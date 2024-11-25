@@ -68,3 +68,16 @@ class Auth:
                 password.encode("utf-8"), user.hashed_password)
         except Exception:
             return False
+
+    def create_session(self, email: str) -> str:
+        """
+        It takes an email string argument and returns the session ID as a string
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+        except Exception:
+            return None
+        sess_id = _generate_uuid()
+        user.session_id = sess_id
+        self._db._session.commit()
+        return sess_id
